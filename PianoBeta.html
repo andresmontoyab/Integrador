@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/main.css" />
+	<script type="text/javascript" src="../build/Tone.js"></script>
+	<script type="text/javascript" src="scripts/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="Tone.js-master/build/Tone.js"></script>
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/draggabilly.js"></script>
+	<script type="text/javascript" src="scripts/StartAudioContext.js"></script>
+	<script type="text/javascript" src="scripts/Interface.js"></script>
+	<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+	<script type="text/javascript" src="scripts/main.js"></script>
+</head>
+<body>
+	
+	<div id="piano">
+		<div id="pianoBody">
+			<div id="Oct0" class="octava">
+				<div id="1" class="white key"><div class="keyname">C</div><div class="oN">1</div></div>
+				<div id="3" class="white key"><div class="keyname">D</div></div>
+				<div id="5" class="white key"><div class="keyname">E</div></div>
+				<div id="6" class="white key"><div class="keyname">F</div></div>
+				<div id="8" class="white key"><div class="keyname">G</div></div>
+				<div id="10" class="white key"><div class="keyname">A</div></div>
+				<div id="12" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="2" class="black key"><div class="keyname">C#</div></div>
+					<div id="4" class="black key"><div class="keyname">D#</div></div>
+					<div id="7" class="black key"><div class="keyname">F#</div></div>
+					<div id="9" class="black key"><div class="keyname">G#</div></div>
+					<div id="11" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<div id="Oct1" class="octava">
+				<div id="13" class="white key"><div class="keyname">C</div><div class="oN">2</div></div>
+				<div id="15" class="white key"><div class="keyname">D</div></div>
+				<div id="17" class="white key"><div class="keyname">E</div></div>
+				<div id="18" class="white key"><div class="keyname">F</div></div>
+				<div id="20" class="white key"><div class="keyname">G</div></div>
+				<div id="22" class="white key"><div class="keyname">A</div></div>
+				<div id="24" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="14" class="black key"><div class="keyname">C#</div></div>
+					<div id="16" class="black key"><div class="keyname">D#</div></div>
+					<div id="19" class="black key"><div class="keyname">F#</div></div>
+					<div id="21" class="black key"><div class="keyname">G#</div></div>
+					<div id="23" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<div id="Oct2" class="octava">
+				<div id="25" class="white key"><div class="keyname">C</div><div class="oN">3</div></div>
+				<div id="27" class="white key"><div class="keyname">D</div></div>
+				<div id="29" class="white key"><div class="keyname">E</div></div>
+				<div id="30" class="white key"><div class="keyname">F</div></div>
+				<div id="32" class="white key"><div class="keyname">G</div></div>
+				<div id="34" class="white key"><div class="keyname">A</div></div>
+				<div id="36" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="26" class="black key"><div class="keyname">C#</div></div>
+					<div id="28" class="black key"><div class="keyname">D#</div></div>
+					<div id="31" class="black key"><div class="keyname">F#</div></div>
+					<div id="33" class="black key"><div class="keyname">G#</div></div>
+					<div id="35" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<!--
+			<div id="Oct3" class="octava">
+				<div id="37" class="white key"><div class="keyname">C</div><div class="oN">4</div></div>
+				<div id="39" class="white key"><div class="keyname">D</div></div>
+				<div id="41" class="white key"><div class="keyname">E</div></div>
+				<div id="42" class="white key"><div class="keyname">F</div></div>
+				<div id="44" class="white key"><div class="keyname">G</div></div>
+				<div id="46" class="white key"><div class="keyname">A</div></div>
+				<div id="48" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="38" class="black key"><div class="keyname">C#</div></div>
+					<div id="40" class="black key"><div class="keyname">D#</div></div>
+					<div id="43" class="black key"><div class="keyname">F#</div></div>
+					<div id="45" class="black key"><div class="keyname">G#</div></div>
+					<div id="47" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<div id="Oct4" class="octava">
+				<div id="4C" class="white key"><div class="keyname">C</div><div class="oN">5</div></div>
+				<div id="4D" class="white key"><div class="keyname">D</div></div>
+				<div id="4E" class="white key"><div class="keyname">E</div></div>
+				<div id="4F" class="white key"><div class="keyname">F</div></div>
+				<div id="4G" class="white key"><div class="keyname">G</div></div>
+				<div id="4A" class="white key"><div class="keyname">A</div></div>
+				<div id="4B" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="4Cs" class="black key"><div class="keyname">C#</div></div>
+					<div id="4Ds" class="black key"><div class="keyname">D#</div></div>
+					<div id="4Fs" class="black key"><div class="keyname">F#</div></div>
+					<div id="4Gs" class="black key"><div class="keyname">G#</div></div>
+					<div id="4As" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<div id="Oct5" class="octava">
+				<div id="5C" class="white key"><div class="keyname">C</div><div class="oN">6</div></div>
+				<div id="5D" class="white key"><div class="keyname">D</div></div>
+				<div id="5E" class="white key"><div class="keyname">E</div></div>
+				<div id="5F" class="white key"><div class="keyname">F</div></div>
+				<div id="5G" class="white key"><div class="keyname">G</div></div>
+				<div id="5A" class="white key"><div class="keyname">A</div></div>
+				<div id="5B" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="5Cs" class="black key"><div class="keyname">C#</div></div>
+					<div id="5Ds" class="black key"><div class="keyname">D#</div></div>
+					<div id="5Fs" class="black key"><div class="keyname">F#</div></div>
+					<div id="5Gs" class="black key"><div class="keyname">G#</div></div>
+					<div id="5As" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			<div id="Oct6" class="octava">
+				<div id="6C" class="white key"><div class="keyname">C</div><div class="oN">7</div></div>
+				<div id="6D" class="white key"><div class="keyname">D</div></div>
+				<div id="6E" class="white key"><div class="keyname">E</div></div>
+				<div id="6F" class="white key"><div class="keyname">F</div></div>
+				<div id="6G" class="white key"><div class="keyname">G</div></div>
+				<div id="6A" class="white key"><div class="keyname">A</div></div>
+				<div id="6B" class="white key"><div class="keyname">B</div></div>
+				<div class="sharps">
+					<div id="6Cs" class="black key"><div class="keyname">C#</div></div>
+					<div id="6Ds" class="black key"><div class="keyname">D#</div></div>
+					<div id="6Fs" class="black key"><div class="keyname">F#</div></div>
+					<div id="6Gs" class="black key"><div class="keyname">G#</div></div>
+					<div id="6As" class="black key"><div class="keyname">A#</div></div>
+				</div>
+			</div>
+			-->
+		</div>
+	</div>
+	<button id="button" type="button" onclick="formarCadencia('CN','completa')"> Acorde E</button>
+	
+</body>
+</html>

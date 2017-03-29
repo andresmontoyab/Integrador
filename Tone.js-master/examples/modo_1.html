@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	@import "css/Style.css";
+</style>
+<script src="https://rawgit.com/0xfe/vexflow/master/releases/vexflow-debug.js"></script>
+<script type="text/javascript" src="https://github.com/Tonejs/Tone.js/blob/master/build/Tone.js"></script>
+<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+<script type="text/javascript" src="./scripts/draggabilly.js"></script>
+<script type="text/javascript" src="./scripts/StartAudioContext.js"></script>
+<script type="text/javascript" src="./scripts/Interface.js"></script>
+<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+<script src="Acordes.js"></script>
+</head>
+<body>
+<div class="container">
+<header id="grad1">
+	<h1> Aprende Musica Jugando </h1>
+</header>
+<nav>
+	<ul>
+		<li><a href="#">Tutorial</a></li>
+		<ul class="a">
+			<li><a href="#">Acordes</a></li>
+			<li><a href="#">Escalas</a></li>
+		</ul>
+		<hr>	
+		<li><a href="#">Cadencias</a></li>
+		<ul class="a">
+			<li><a href="#">Cadencia tipo 1</a></li>
+			<li><a href="#">Cadencia tipo 2</a></li>
+			<li><a href="#">Cadencia tipo 3</a></li> 
+		</ul>
+		<hr>
+		<li><a href="#">Modo Leyenda</a></li>
+	</ul>
+</nav>
+<article>
+		<h1>             Puntaje       </h1>
+		<input type='text' value='' id='text'> 
+		<div id="pentagrama">
+
+		<script type="text/javascript">
+				
+					var Player2C = new Tone.Player({
+						"url" : "./audio/2 C.mp3",
+						"loop" : false,
+						"loopStart" : 0,
+						"loopEnd" : 0.4,
+						"retrigger": true,
+					}).toMaster();
+					
+					
+
+					VF = Vex.Flow;
+
+					var div = document.getElementById("pentagrama")
+					var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+					renderer.resize(1000, 200);
+					var context = renderer.getContext();
+					context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+					var stave = new VF.Stave(10, 50, 500);
+					stave.addClef("treble").addTimeSignature("4/4");
+					stave.setContext(context).draw();
+
+						var notes = [
+
+						  new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" }),
+						  new VF.StaveNote({ keys: ["d/4","f#/4","a/4","d/5"], duration: "q" }).addAccidental(1, new VF.Accidental("#")),
+						  new VF.StaveNote({ keys: ["e/4", "g#/4", "b/4","e/3"], duration: "q" }).addAccidental(1, new VF.Accidental("#")),
+						  new VF.StaveNote({ keys: ["f/4", "c/5", "a/4","f/3"], duration: "q" }),
+					  	  new VF.StaveNote({ keys: ["g/4", "d/5", "b/4","g/3"], duration: "q" }),
+						  new VF.StaveNote({ keys: ["a/4", "c#/5", "e/5","a/3"], duration: "q" }).addAccidental(2,new VF.Accidental("#")),
+						  new VF.StaveNote({ keys: ["b/4", "d#/5", "f#/4","b/3"], duration: "q" }).addAccidental(1,new VF.Accidental("#")).addAccidental(3,new VF.Accidental("#"))
+
+
+						];
+
+					var voice = new VF.Voice({num_beats: 7,  beat_value: 4});
+					voice.addTickables(notes);
+					var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+					voice.draw(context, stave);
+			
+		</script>
+
+		
+		</div>
+
+		<button onclick="grado_1()">Grado1</button>
+		<button onclick="grado_4()">Grado4</button>
+		<button onclick="grado_5()">Grado5</button>
+		<button onclick="Siguiente()">Seguir</button>
+		<br></br>
+
+		<div id="ejemplo">
+		
+			<script type="text/javascript">
+					
+				var control=0;
+				var i=0;
+				var puntaje=100;
+				document.getElementById("text").disabled=true;
+				document.getElementById("text").value=puntaje;
+
+
+					VF = Vex.Flow;
+					var div = document.getElementById("pentagrama")
+			 		var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+					renderer.resize(2000, 200);
+					var context = renderer.getContext();
+					context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+					var stave = new VF.Stave(10, 50, 400);
+					stave.addClef("treble").addTimeSignature("4/4");					
+					stave.setContext(context).draw();
+
+
+
+						var C_grade1 = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" })
+						 
+						];
+						var C_grade4 = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" })
+
+						];
+
+						var C_grade5 = [
+							new VF.StaveNote({ keys: ["g/3","g/4","d/5","b/4"], duration: "q" })
+
+						];
+
+						var C_grade1_green = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})						 
+						];
+
+						
+						var C_grade4_red = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var C_grade5_red = [
+							new VF.StaveNote({ keys: ["g/3","g/4","d/5","b/4"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+
+						var D_grade1 = [
+							new VF.StaveNote({ keys: ["d/4","f/4","c/5","d/3"], duration: "q" })
+						 
+						];
+						var D_grade4 = [
+							new VF.StaveNote({ keys: ["g/4","b/4","d/5","g/3"], duration: "q" })
+
+						];
+
+						var D_grade5 = [
+							new VF.StaveNote({ keys: ["a/3","c/4","e/5","a/4"], duration: "q" })
+
+						];
+
+						var D_grade1_green = [
+							new VF.StaveNote({ keys: ["d/4","f/4","c/5","d/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})						 
+						];
+
+						
+						var D_grade4_red = [
+							new VF.StaveNote({ keys: ["g/4","b/4","d/5","g/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var D_grade5_red = [
+							new VF.StaveNote({ keys: ["a/3","c/4","e/5","a/4"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+
+					var i=0;
+					setInterval(function(){ 
+						if(i==0){										
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade1);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);						
+						}
+						if (i==1){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade4);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+						}
+						if (i==2){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade5);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+						}
+						i=i+1;
+
+				 }, 1000);
+					
+					var voice1 = new VF.Voice({num_beats: 2,  beat_value: 4});
+					voice1.addTickables(grade4);
+					var formatter = new VF.Formatter().joinVoices([voice1]).format([voice1], 400);
+					voice1.draw(context, stave);
+
+
+						function grado_1(){
+							console.log("Entro");
+							puntaje=puntaje+20;							
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							if(control==0){
+								voice.addTickables(C_grade1_green);
+								}
+							if(control==1){
+								voice.addTickables(D_grade1_green);
+								}
+
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							document.getElementById("text").value=puntaje;
+							console.log("Salio");
+					}
+
+							function grado_4(){
+							console.log("Entro");
+							puntaje=puntaje-20;
+							document.getElementById("text").value=puntaje;
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							if(control==0){
+								voice.addTickables(C_grade4_red);
+								}
+							if(control==1){
+								voice.addTickables(D_grade4_red);
+								}
+							
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							console.log("Salio");
+					}
+
+							function grado_5(){
+							puntaje=puntaje-20;
+							document.getElementById("text").value=puntaje;
+							console.log("Entro");
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							if(control==0){
+								voice.addTickables(C_grade5_red);
+								}
+							if(control==1){
+								voice.addTickables(D_grade5_red);
+								}
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							console.log("Salio");
+					}
+
+						function Siguiente(){
+
+							control=control+1;
+							renderer.resize(0, 0);
+							div = document.getElementById("pentagrama")
+					 		renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+							renderer.resize(2000, 200);
+							context = renderer.getContext();
+							context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+							stave = new VF.Stave(10, 50, 400);
+							stave.addClef("treble").addTimeSignature("4/4");					
+							stave.setContext(context).draw();
+
+							var i=0;
+					setInterval(function(){ 
+						if(i==0){										
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(D_grade1);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);						
+						}
+						if (i==1){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(D_grade4);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+						}
+						if (i==2){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(D_grade5);
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+						}
+						i=i+1;
+
+				 }, 1000);
+							
+
+
+						}
+
+
+			</script>
+
+			
+
+
+		</div>
+
+
+
+	<audio id="6E">
+		<source src="Audios/6 E.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="6F">
+		<source src="Audios/6 F.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="6F#">
+		<source src="Audios/6 F#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="6G">
+		<source src="Audios/6 G.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="6G#">
+		<source src="Audios/6 G#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="5A">
+		<source src="Audios/5 A.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="5A#">
+		<source src="Audios/5 A#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="5B">
+		<source src="Audios/5 B.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="5C">
+		<source src="Audios/5 C.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="5C#">
+		<source src="Audios/5 C#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="4D">
+		<source src="Audios/4 D.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="4D#">
+		<source src="Audios/4 D#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="4E">
+		<source src="Audios/4 E.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="4F">
+		<source src="Audios/4 F.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="4F#">
+		<source src="Audios/4 F#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="3G">
+		<source src="Audios/3 G.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="3G#">
+		<source src="Audios/3 G#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="3A">
+		<source src="Audios/3 A.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="3 A#">
+		<source src="Audios/3 A#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="2B">
+		<source src="Audios/2 B.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="2C">
+		<source src="Audios/2 C.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="2C#">
+		<source src="Audios/2 C#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="2D">
+		<source src="Audios/2 D.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="2D#">
+		<source src="Audios/2 D#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1E">
+		<source src="Audios/1 E.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1F">
+		<source src="Audios/1 F.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1F#">
+		<source src="Audios/1 F#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1G">
+		<source src="Audios/1 G.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1G#">
+		<source src="Audios/1 G#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1A">
+		<source src="Audios/1 A.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1A#">
+		<source src="Audios/1 A#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1B">
+		<source src="Audios/1 B.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1C">
+		<source src="Audios/1 C.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1C#">
+		<source src="Audios/1 C#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1D">
+		<source src="Audios/1 D.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1D#">
+		<source src="Audios/1 D#.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="1E12">
+		<source src="Audios/1 E 12.mp3" type="audio/mpeg">
+	</audio>
+	<button id="grad3" class="button button1" type="button" onclick="acordeC()"> Acorde C</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeD()"> Acorde D</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeE()"> Acorde E</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeF()"> Acorde F</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeG()"> Acorde G</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeA()"> Acorde A</button> 
+	<br>
+	<hr>
+	<button id="grad3" class="button button1" type="button" onclick="acordeB()"> Acorde B</button> 
+	<br>
+	<hr>
+</article>
+<footer id="grad2">
+	Universidad de Antioquia - Facultad de Ingenieria
+</footer>
+</div>
+</body>
+</html>

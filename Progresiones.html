@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html>
+<link rel="icon" href="style/cadenzart.png" />
+<head>
+<meta charset="utf-8">
+<style>
+	@import "style/Progresiones.css";
+</style>
+<!--<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>-->
+<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+<script type="text/javascript" src="./scripts/draggabilly.js"></script>
+<script type="text/javascript" src="./scripts/StartAudioContext.js"></script>
+<script type="text/javascript" src="scripts/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../build/Tone.js"></script>
+<script type="text/javascript" src="Tone.js-master/build/Tone.js"></script>
+<script type="text/javascript" src="./scripts/acordes.js"></script>
+<script type="text/javascript" src="./scripts/Interprete.js"></script>
+<script type="text/javascript" src="./scripts/progresiones_scripts.js"></script>
+<script type="text/javascript" src="./scripts/Play.js"></script>
+<script type="text/javascript" src="./scripts/buttons.js"></script>
+<!--<script type="text/javascript" src="./scripts/Interface.js"></script>-->
+<script type="text/javascript" src="scripts/other.js"></script>
+<!--<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>-->
+<center>
+    <label id="titulo" style="color: white">Cadenzart</label>
+    <br/>
+    <br/>
+</center>
+</head>
+<body id="bodyFondo">
+    <center>
+	   <div  class="container" id="fondo">
+            <div id="textScore">
+                <label id="repeticiones" style="color: white">Repeticiones Disponibles: 5</label>
+            </div>
+            <div id="tonal">
+                <label id="scores" style="color: white"></label>
+                <label id="tonalidad" style="color: white"></label>
+            </div>
+             <div id="correct_answer"></div>
+              </div>
+            <div id="button_sound">
+                <button onclick="replay()" id='replay'><span>Repetir</span></button>
+            </div>
+            <div id="button_sound">
+                <button onclick="next_Prog()" id='next_prog'><span>Empezar</span></button>
+            </div>
+             <div id="button_sound">
+                <button onclick="next()" id='next'><span>Siguiente --></span></button>
+            </div>
+            <div id="label1">
+                <label id="label1"></label>
+            </div>
+            <label id="r" style="color: white">Respuesta</label>
+            <div id="send">
+                <button onclick="checkAnswer()" id='check'><span>Corregir</span></button>
+            </div>
+            <div id="numero_acordes">
+                <label id="number_chords" style="color: white"></label>
+            </div>
+    		<div id="answerss"></div>
+		      </div>
+             
+    </center>
+
+
+		<script type="text/javascript">
+
+
+        //---------Definicion de variables globales con las cuales nuestra aplicacion se manejará----------\\
+        var progresiones = [];
+        var progresiones_por_grado;
+        var input_textBox_user=[];
+        var input_textBox_answer=[];
+        var i;
+        var timer_progresion;
+        var number_replay = 5;
+        var opcion_avaliable = 5;
+        var number_chords_current;
+        var random_progresion;
+        var answer;
+        var estado;
+
+        //-----------------*************************************************************--------------------\\
+        
+
+
+        //-------------------------Solo Mostrar el Bottun Empezar al inicio del juego.-----------------------\\
+         vista_inicio();
+        
+
+         //----------------------*******************************************************--------------------\\
+
+
+
+         //----------------------Obtener cada una de las progresiones descritar en el archivo file.txt-------\\
+        get_interprete();
+        //-----------------------************************************************************-----------------\\
+
+
+      
+        
+        var Notas = new Tone.MultiPlayer({
+            urls:{
+                "2AN" : "audio/2AN.mp3","2AS" : "audio/2AS.mp3","2BN" : "audio/2BN.mp3","2CS" : "audio/2CN.mp3","2CS" : "audio/2CS.mp3",
+                "2DN" : "audio/2DN.mp3","2DS" : "audio/2DS.mp3","2EN" : "audio/2EN.mp3","2FN" : "audio/2FN.mp3","2FS" : "audio/2FS.mp3",
+                "2GN" : "audio/2GN.mp3","2GS" : "audio/2GS.mp3",    
+                "3AN" : "audio/3AN.mp3","3AS" : "audio/3AS.mp3","3BN" : "audio/3BN.mp3","3CN" : "audio/3CN.mp3","3CS" : "audio/3CS.mp3",
+                "3DN" : "audio/3DN.mp3","3DS" : "audio/3DS.mp3","3EN" : "audio/3EN.mp3","3FN" : "audio/3FN.mp3","3FS" : "audio/3FS.mp3",
+                "3GN" : "audio/3GN.mp3","3GS" : "audio/3GS.mp3",
+                "4AN" : "audio/4AN.mp3","4AS" : "audio/4AS.mp3","4BN" : "audio/4BN.mp3","4CN" : "audio/4CN.mp3","4CS" : "audio/4CS.mp3",
+                "4DN" : "audio/4DN.mp3","4DS" : "audio/4DS.mp3","4EN" : "audio/4EN.mp3","4FN" : "audio/4FN.mp3","4FS" : "audio/4FS.mp3",
+                "4GN" : "audio/4GN.mp3","4GS" : "audio/4GS.mp3",
+                "5AN" : "audio/5AN.mp3","5AS" : "audio/5AS.mp3","5BN" : "audio/5BN.mp3","5CN" : "audio/5CN.mp3","5CS" : "audio/5CS.mp3",
+                "5DN" : "audio/5DN.mp3","5DS" : "audio/5DS.mp3","5EN" : "audio/5EN.mp3","5FN" : "audio/5FN.mp3","5FS" : "audio/5FS.mp3",
+                "5GN" : "audio/5GN.mp3","5GS" : "audio/5GS.mp3",    
+                "6AN" : "audio/6AN.mp3","6AS" : "audio/6AS.mp3","6BN" : "audio/6BN.mp3","6CN" : "audio/6CN.mp3","6CS" : "audio/6CS.mp3",
+                "6DN" : "audio/6DN.mp3","6DS" : "audio/6DS.mp3","6EN" : "audio/6EN.mp3","6FN" : "audio/6FN.mp3","6FS" : "audio/6FS.mp3",
+                "6GN" : "audio/6GN.mp3","6GS" : "audio/6GS.mp3",
+            },
+            volume: 3,
+            }).toMaster();
+    
+            var Bajos = new Tone.MultiPlayer({
+                urls:{      
+                    "2AN" : "audio/2AN.mp3","2AS" : "audio/2AS.mp3","2BN" : "audio/2BN.mp3","2CS" : "audio/2CN.mp3","2CS" : "audio/2CS.mp3",
+                    "2DN" : "audio/2DN.mp3","2DS" : "audio/2DS.mp3","2EN" : "audio/2EN.mp3","2FN" : "audio/2FN.mp3","2FS" : "audio/2FS.mp3",
+                    "2GN" : "audio/2GN.mp3","2GS" : "audio/2GS.mp3",    
+                    "3AN" : "audio/3AN.mp3","3AS" : "audio/3AS.mp3","3BN" : "audio/3BN.mp3","3CN" : "audio/3CN.mp3","3CS" : "audio/3CS.mp3",
+                    "3DN" : "audio/3DN.mp3","3DS" : "audio/3DS.mp3","3EN" : "audio/3EN.mp3","3FN" : "audio/3FN.mp3","3FS" : "audio/3FS.mp3",
+                    "3GN" : "audio/3GN.mp3","3GS" : "audio/3GS.mp3",
+                    "4AN" : "audio/4AN.mp3","4AS" : "audio/4AS.mp3","4BN" : "audio/4BN.mp3","4CN" : "audio/4CN.mp3","4CS" : "audio/4CS.mp3",
+                    "4DN" : "audio/4DN.mp3","4DS" : "audio/4DS.mp3","4EN" : "audio/4EN.mp3","4FN" : "audio/4FN.mp3","4FS" : "audio/4FS.mp3",
+                    "4GN" : "audio/4GN.mp3","4GS" : "audio/4GS.mp3",
+                    "5AN" : "audio/5AN.mp3","5AS" : "audio/5AS.mp3","5BN" : "audio/5BN.mp3","5CN" : "audio/5CN.mp3","5CS" : "audio/5CS.mp3",
+                    "5DN" : "audio/5DN.mp3","5DS" : "audio/5DS.mp3","5EN" : "audio/5EN.mp3","5FN" : "audio/5FN.mp3","5FS" : "audio/5FS.mp3",
+                    "5GN" : "audio/5GN.mp3","5GS" : "audio/5GS.mp3",    
+                    "6AN" : "audio/6AN.mp3","6AS" : "audio/6AS.mp3","6BN" : "audio/6BN.mp3","6CN" : "audio/6CN.mp3","6CS" : "audio/6CS.mp3",
+                    "6DN" : "audio/6DN.mp3","6DS" : "audio/6DS.mp3","6EN" : "audio/6EN.mp3","6FN" : "audio/6FN.mp3","6FS" : "audio/6FS.mp3",
+                    "6GN" : "audio/6GN.mp3","6GS" : "audio/6GS.mp3",
+                },
+                volume: 7,
+                }).toMaster();
+
+
+        function playBase(){
+             //Se generan los randoms para contruir la cadencia
+            document.getElementById('replay').disabled=false;
+            var i=0;   
+            console.log(progresiones.length)
+            random_progresion= (Math.floor((Math.random() * (progresiones.length)) + 0));;
+
+            progresiones_por_grado= progresiones[random_progresion].split("-");
+            progresiones_por_grado[0] = progresiones_por_grado[0].trim();
+
+            input_textBox=create_text(progresiones_por_grado.length);
+
+            console.log(progresiones_por_grado)      
+            var number_chords_current=progresiones_por_grado.length;
+            
+            timer_progresion = setInterval(function(){
+
+                if(i<progresiones_por_grado.length){
+                int = interpretar(progresiones_por_grado[i],"CN");
+                console.log("Suena: "+int);
+                Notas.start(int[0]);
+                Notas.start(int[1]);
+                Notas.start(int[2]);
+                Notas.start(int[3]);
+                }
+                i=i+1;
+                
+                    
+             
+            }, 1500);
+
+            document.getElementById('number_chords').innerHTML=number_chords_current;
+        }
+
+        
+		</script>
+	</div>
+</body>
+<footer>
+	<center>
+        <label id="UdeA" style="color: white">Universidad de Antioquia - Facultad de Ingenieria</label>
+    </center>
+</footer>
+</html>

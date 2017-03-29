@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	@import "style/Style.css";
+</style>
+<script src="https://rawgit.com/0xfe/vexflow/master/releases/vexflow-debug.js"></script>
+<script type="text/javascript" src="Tone.js-master/build/Tone.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/draggabilly.js"></script>
+<script type="text/javascript" src="scripts/StartAudioContext.js"></script>
+<script type="text/javascript" src="scripts/Interface.js"></script>
+<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+</head>
+<body>
+<div class="container">
+<header id="grad1">
+	<h1> Aprende Musica Jugando </h1>
+</header>
+<nav>
+	<ul>
+		<li><a href="#">Tutorial</a></li>
+		<ul class="a">
+			<li><a href="#">Acordes</a></li>
+			<li><a href="#">Escalas</a></li>
+		</ul>
+		<hr>	
+		<li><a href="#">Cadencias</a></li>
+		<ul class="a">
+			<li><a href="#">Cadencia tipo 1</a></li>
+			<li><a href="#">Cadencia tipo 2</a></li>
+			<li><a href="#">Cadencia tipo 3</a></li> 
+		</ul>
+		<hr>
+		<li><a href="#">Modo Leyenda</a></li>
+	</ul>
+</nav>
+<article>
+		<h1>Puntaje</h1>
+		<label id="text" ></label>
+		<br></br>
+		<label id="respuesta" ></label>
+		<div id="pentagrama">
+		<script type="text/javascript">
+		</script>
+		</div>
+		<button onclick="grado_1()" id='boton1'>Grado1</button>
+		<button onclick="grado_4()" id='boton2'>Grado4</button>
+		<button onclick="grado_5()" id='boton3'>Grado5</button>
+		<button onclick="Siguiente()" id='seguir'>Seguir</button>
+		<br></br>
+
+		<div id="ejemplo">
+		
+			<script type="text/javascript">
+				var Player1A = new Tone.Player({
+					"url" :"audio/1 A.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1AS = new Tone.Player({
+					"url" : "audio/1 AS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1B = new Tone.Player({
+					"url" : "audio/1 B.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1C = new Tone.Player({
+					"url" : "audio/1 C.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1D = new Tone.Player({
+					"url" : "audio/1 D.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1DS = new Tone.Player({
+					"url" : "audio/1 DS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1E = new Tone.Player({
+					"url" : "audio/1 E.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1E12 = new Tone.Player({
+					"url" : "audio/1 E 12.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1F = new Tone.Player({
+					"url" : "audio/1 F.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1FS = new Tone.Player({
+					"url" : "audio/1 FS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1G = new Tone.Player({
+					"url" : "audio/1 G.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player1GS = new Tone.Player({
+					"url" : "audio/1 GS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player2B = new Tone.Player({
+					"url" : "audio/2 B.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player2C = new Tone.Player({
+					"url" : "audio/2 C.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player2CS = new Tone.Player({
+					"url" : "audio/2 CS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player2D = new Tone.Player({
+					"url" : "audio/2 D.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player2DS = new Tone.Player({
+					"url" : "audio/2 DS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player3A = new Tone.Player({
+					"url" : "audio/3 A.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player3AS = new Tone.Player({
+					"url" : "audio/3 AS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player3G = new Tone.Player({
+					"url" : "audio/3 G.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player3GS = new Tone.Player({
+					"url" : "audio/3 GS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player4D = new Tone.Player({
+					"url" : "audio/4 D.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player4DS = new Tone.Player({
+					"url" : "audio/4 DS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player4E = new Tone.Player({
+					"url" : "audio/4 E.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player4F = new Tone.Player({
+					"url" : "audio/4 F.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player4FS = new Tone.Player({
+					"url" : "audio/4 FS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player5A = new Tone.Player({
+					"url" : "audio/5 A.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player5AS = new Tone.Player({
+					"url" : "audio/5 AS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player5B = new Tone.Player({
+					"url" : "audio/5 B.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player5C = new Tone.Player({
+					"url" : "audio/5 C.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player5CS = new Tone.Player({
+					"url" : "audio/5 CS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player6E = new Tone.Player({
+					"url" : "audio/6 E.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player6F = new Tone.Player({
+					"url" : "audio/6 F.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player6FS = new Tone.Player({
+					"url" : "audio/6 FS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player6G = new Tone.Player({
+					"url" : "audio/6 G.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+				var Player6GS = new Tone.Player({
+					"url" : "audio/6 GS.mp3",
+					"loop" : false,
+					"loopStart" : 0,
+					"loopEnd" : 0.4,
+					"retrigger": true,
+				}).toMaster();
+			
+				var control=0;
+				var i=0;
+				var puntaje=100;
+				document.getElementById("text").innerHTML=puntaje;
+				document.getElementById("boton1").disabled=true;
+				document.getElementById("boton2").disabled=true;
+				document.getElementById("boton3").disabled=true;
+				document.getElementById("seguir").disabled=true;
+				
+
+
+					VF = Vex.Flow;
+					var div = document.getElementById("pentagrama")
+			 		var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+					renderer.resize(2000, 200);
+					var context = renderer.getContext();
+					context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+					var stave = new VF.Stave(10, 50, 400);
+					stave.addClef("treble").addTimeSignature("4/4");					
+					stave.setContext(context).draw();
+
+
+
+							var C_grade1 = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" })
+						 
+						];
+						var C_grade4 = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" })
+
+						];
+
+						var C_grade5 = [
+							new VF.StaveNote({ keys: ["g/3","g/4","d/5","b/4"], duration: "q" })
+
+						];
+
+						var C_grade1_green = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})						 
+						];
+
+						
+						var C_grade4_red = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var C_grade5_red = [
+							new VF.StaveNote({ keys: ["g/3","g/4","d/5","b/4"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var D_grade1 = [
+							new VF.StaveNote({ keys: ["d/4","f/4","a/4","d/5"], duration: "q" })
+						 
+						];
+						var D_grade4 = [
+							new VF.StaveNote({ keys: ["g/4","b/4","d/5","g/3"], duration: "q" })
+
+						];
+
+						var D_grade5 = [
+							new VF.StaveNote({ keys: ["a/3","c/4","e/4","a/4"], duration: "q" })
+
+						];
+
+						var D_grade1_red = [
+							new VF.StaveNote({ keys: ["d/4","f/4","a/4","d/5"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})						 
+						];
+
+						
+						var D_grade4_green = [
+							new VF.StaveNote({ keys: ["g/4","b/4","d/5","g/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})
+
+						];
+
+						var D_grade5_red = [
+							new VF.StaveNote({ keys: ["a/3","c/4","e/4","a/4"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+
+						var E_grade1 = [
+							new VF.StaveNote({ keys: ["e/4","g/4","b/3","e/3"], duration: "q" })
+						 
+						];
+						var E_grade4 = [
+							new VF.StaveNote({ keys: ["a/4","c/4","e/4","a/3"], duration: "q" })
+
+						];
+
+						var E_grade5 = [
+							new VF.StaveNote({ keys: ["b/3","d/5","f/4","b/4"], duration: "q" })
+
+						];
+
+						var E_grade1_red = [
+							new VF.StaveNote({ keys: ["e/4","g/4","b/3","e/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})						 
+						];
+
+						
+						var E_grade4_red = [
+							new VF.StaveNote({ keys: ["a/4","c/4","e/4","a/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var E_grade5_green = [
+							new VF.StaveNote({ keys: ["b/3","d/5","f/4","b/4"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})
+
+						];
+
+
+						var F_grade1 = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" })
+						 
+						];
+						var F_grade4 = [
+							new VF.StaveNote({ keys: ["b/4","d/5","f/4","b/3"], duration: "q" })
+
+						];
+
+						var F_grade5 = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" })
+
+						];
+
+						var F_grade1_green = [
+							new VF.StaveNote({ keys: ["f/4","a/4","c/5","f/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "green", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "green", shadowBlur: 50})						 
+						];
+
+						
+						var F_grade4_red = [
+							new VF.StaveNote({ keys: ["b/4","d/5","f/4","b/3"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+						var F_grade5_red = [
+							new VF.StaveNote({ keys: ["c/4","e/4","g/4","c/5"], duration: "q" }).setKeyStyle(0, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(1, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(2, {shadowColor: "red", shadowBlur: 50}).setKeyStyle(3, {shadowColor: "red", shadowBlur: 50})
+
+						];
+
+
+					var i=0;
+					setInterval(function(){ 
+						if(i==0){										
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade1);
+							"c/4","e/4","g/4","c/5"
+							console.log("start");
+							Player4E.start();
+							Player3G.start();
+							Player5C.start();
+							Player2C.start();
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);						
+						}
+						if (i==1){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade4);
+							"f/4","a/4","c/5","f/3"
+							Player4F.start();
+							Player3A.start();
+							Player2C.start();
+							Player6F.start();
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+						}
+						if (i==2){
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							voice.addTickables(C_grade5); 
+							"g/3","g/4","d/5","b/4"
+							Player3G.start();
+							Player6G.start();
+							Player2D.start();
+							Player2B.start();
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							document.getElementById("boton1").disabled=false;
+							document.getElementById("boton2").disabled=false;
+							document.getElementById("boton3").disabled=false;
+
+						}
+						i=i+1;
+
+				 }, 1000);
+					
+
+
+					var voice1 = new VF.Voice({num_beats: 2,  beat_value: 4});
+					voice1.addTickables(C_grade4);				 
+					var formatter = new VF.Formatter().joinVoices([voice1]).format([voice1], 400);
+					voice1.draw(context, stave);
+					control=control+1;
+					function grado_1(){
+
+						console.log("Entro al 1");
+						stave.addClef("treble").addTimeSignature("4/4");
+						var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+						if(control==0){
+							voice.addTickables(C_grade1_green);
+							puntaje=puntaje+20;	
+							document.getElementById("respuesta").innerHTML="ACERTASTE!!!";
+							Player4E.start();
+							Player3G.start();
+							Player5C.start();
+							Player2C.start();
+							console.log("control 0");
+						}
+						if(control==1){
+							voice.addTickables(D_grade1_red);
+							puntaje=puntaje-20;	
+							document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+							Player4D.start();
+							Player4FS.start();
+							Player3A.start();
+							Player2D.start();
+							console.log("control 1");
+							}
+						if(control==2){
+							console.log("2C "+Player2C.state);
+							voice.addTickables(E_grade1_red);
+							puntaje=puntaje-20;	
+							document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+							Player6E.start();
+							Player5B.start();
+							Player4E.start();
+							Player3GS.start();	
+							console.log("control 2");
+							}
+						if(control==3){	
+							voice.addTickables(F_grade1_green);
+							puntaje=puntaje+20;	
+							document.getElementById("respuesta").innerHTML="ACERTASTE!!!";
+							Player6F.start();
+							Player5C.start();
+							Player4F.start();
+							Player3A.start();
+							console.log("control 3");
+							}
+							if(puntaje==0){
+								document.getElementById("respuesta").innerHTML="GAME OVER!";
+								renderer.resize(0, 0);
+								document.getElementById("seguir").innerHTML="Empezar de nuevo";
+								document.getElementById("seguir").disabled=false;				
+								puntaje=100;
+								juego=0;
+							}
+
+							control=control+1;
+							if(control==4){
+								control=0;
+							}
+
+						var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+						voice.draw(context, stave);
+						document.getElementById("text").innerHTML=puntaje;
+						document.getElementById("boton1").disabled=true;
+						document.getElementById("boton2").disabled=true;
+						document.getElementById("boton3").disabled=true;
+						document.getElementById("seguir").disabled=false;
+					}
+
+							function grado_4(){
+								
+							console.log("2D "+Player2D.state);
+							console.log("Entro al 4");
+							
+							document.getElementById("text").innerHTML=puntaje;
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							if(control==0){
+								voice.addTickables(C_grade4_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player4F.start();
+								Player3A.start();
+								Player2C.start();
+								Player6F.start();
+							}
+							if(control==1){
+								voice.addTickables(D_grade4_green);
+								puntaje=puntaje+20;
+								document.getElementById("respuesta").innerHTML="ACERTASTE!!!";
+								Player6G.start();
+								Player3G.start();
+								Player2B.start();
+								Player2D.start();
+								}
+							if(control==2){
+								voice.addTickables(E_grade4_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player5A.start();
+								Player4E.start();
+								Player3A.start();
+								Player2CS.start();
+							}
+							if(control==3){
+								voice.addTickables(F_grade4_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player5AS.start();
+								Player4F.start();
+								Player3AS.start();
+								Player2D.start();
+								}
+							control=control+1;
+							if(control==4){
+								control=0;
+							}
+							if(puntaje==0){
+								document.getElementById("respuesta").innerHTML="GAME OVER!";
+								renderer.resize(0, 0);
+								document.getElementById("seguir").innerHTML="Empezar de nuevo";
+								document.getElementById("seguir").disabled=false;				
+								puntaje=100;
+								juego=0;
+							}
+
+
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							console.log("Salio del 4");
+							document.getElementById("text").innerHTML=puntaje;
+							document.getElementById("boton1").disabled=true;
+							document.getElementById("boton2").disabled=true;
+							document.getElementById("boton3").disabled=true;
+							document.getElementById("seguir").disabled=false;
+					}
+
+							function grado_5(){
+							
+							document.getElementById("text").innerHTML=puntaje;
+							console.log("Entro al 5");
+							stave.addClef("treble").addTimeSignature("4/4");
+							var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+							if(control==0){
+								voice.addTickables(C_grade5_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player3G.start();
+								Player6G.start();
+								Player2D.start();
+								Player2B.start();
+							}
+							if(control==1){
+								voice.addTickables(D_grade5_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player5A.start();
+								Player5C.start();
+								Player4E.start();
+								Player3A.start();
+								}
+							if(control==2){
+								voice.addTickables(E_grade5_green);
+								puntaje=puntaje+20;
+								document.getElementById("respuesta").innerHTML="ACERTASTE!!!";
+								Player5B.start();
+								Player4FS.start();
+								Player2B.start();										
+								Player2D.start();
+								}
+							if(control==3){
+								voice.addTickables(F_grade5_red);
+								puntaje=puntaje-20;
+								document.getElementById("respuesta").innerHTML="FALLASTE!!!"
+								Player5C.start();
+								Player4E.start();
+								Player3G.start();
+								Player2C.start();
+							}
+							if(puntaje==0){
+								document.getElementById("respuesta").innerHTML="GAME OVER!";
+								renderer.resize(0, 0);
+								document.getElementById("seguir").innerHTML="Empezar de nuevo";
+								document.getElementById("seguir").disabled=false;				
+								puntaje=100;
+								juego=0;
+							}
+							control=control+1;
+							if(control==4){
+								control=0;
+							}
+							var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+							voice.draw(context, stave);
+							console.log("Salio del 5");
+							document.getElementById("text").innerHTML=puntaje;
+							document.getElementById("boton1").disabled=true;
+							document.getElementById("boton2").disabled=true;
+							document.getElementById("boton3").disabled=true;
+							document.getElementById("seguir").disabled=false;
+						}
+						function Siguiente(){
+							Player1A.stop();
+							Player1AS.stop();
+							Player1B.stop();
+							Player1C.stop();
+							Player1D.stop();
+							Player1DS.stop();
+							Player1E.stop();
+							Player1F.stop();
+							Player1FS.stop();
+							Player1G.stop();
+							Player1GS.stop();
+							Player2B.stop();
+							Player2C.stop();
+							Player2CS.stop();
+							Player2D.stop();
+							Player2DS.stop();
+							Player3A.stop();
+							Player3AS.stop();
+							Player3G.stop();
+							Player3GS.stop();
+							Player4D.stop();
+							Player4DS.stop();
+							Player4E.stop();
+							Player4F.stop();
+							Player4FS.stop();
+							Player2D.stop();
+							Player5A.stop();
+							Player5AS.stop();
+							Player5B.stop();
+							Player5C.stop();
+							Player5CS.stop();
+							Player6E.stop();
+							Player6F.stop();
+							Player6FS.stop();
+							Player6G.stop();
+							Player6GS.stop();
+							document.getElementById("seguir").innerHTML="Seguir"
+
+							document.getElementById("seguir").disabled=true;
+							console.log("Seguir");
+							renderer.resize(0, 0);
+							div = document.getElementById("pentagrama")
+					 		renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+							renderer.resize(2000, 200);
+							context = renderer.getContext();
+							context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+							stave = new VF.Stave(10, 50, 400);
+							stave.addClef("treble").addTimeSignature("4/4");					
+							stave.setContext(context).draw();
+
+							if(control==0){
+								var i=0;
+								setInterval(function(){ 
+									if(i==0){										
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(C_grade1);
+										Player4E.start();
+										Player3G.start();
+										Player5C.start();
+										Player2C.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);						
+									}
+									if (i==1){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(C_grade4);
+										Player4F.start();
+										Player3A.start();
+										Player2C.start();
+										Player6F.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+									}
+									if (i==2){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(C_grade5);
+										Player3G.start();
+										Player6G.start();
+										Player2D.start();
+										Player2B.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+										document.getElementById("boton1").disabled=false;
+										document.getElementById("boton2").disabled=false;
+										document.getElementById("boton3").disabled=false;
+									}
+									i=i+1;
+
+							 }, 1000);
+
+							}
+
+							//PRIMERA SECUENCIA 
+							if(control==1){
+								console.log("primera secuencia");
+									var i=0;
+									setInterval(function(){ 
+									if(i==0){										
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(D_grade4);
+										Player6G.start();
+										Player3G.start();
+										Player2B.start();
+										Player2D.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);						
+									}
+									if (i==1){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(D_grade5);
+										Player5A.start();
+										Player5C.start();
+										Player3A.start();
+										Player4E.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+									}
+									if (i==2){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(D_grade1);
+										Player4D.start();
+										Player4FS.start();
+										Player3A.start();
+										Player2D.start();					
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+										document.getElementById("boton1").disabled=false;
+										document.getElementById("boton2").disabled=false;
+										document.getElementById("boton3").disabled=false;
+									}
+									i=i+1;
+
+							 }, 1000);
+							}
+
+								//SEGUNDA SECUENCIA
+								if(control==2){
+									console.log("segunda secuencia");
+									var i=0;
+									setInterval(function(){ 
+									if(i==0){										
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(E_grade5);
+										Player5B.start();
+										Player4FS.start();
+										Player2B.start();										
+										Player2D.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);						
+									}
+									if (i==1){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(E_grade1);
+										Player6E.start();
+										Player5B.start();
+										Player4E.start();
+										Player3GS.start();									
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+									}
+									if (i==2){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(E_grade4);
+										Player5A.start();
+										Player4E.start();
+										Player3A.start();
+										Player2CS.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+										document.getElementById("boton1").disabled=false;
+										document.getElementById("boton2").disabled=false;
+										document.getElementById("boton3").disabled=false;
+									}
+									i=i+1;
+
+							 }, 1000);
+							}
+								//TERCERA SECUENCIA
+								if(control==3){
+									console.log("tercera secuencia");
+									var i=0;
+									setInterval(function(){ 
+									if(i==0){										
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(F_grade1);
+										Player6F.start();
+										Player5C.start();
+										Player4F.start();
+										Player3A.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);						
+									}
+									if (i==1){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(F_grade4);
+										Player5AS.start();
+										Player4F.start();
+										Player3AS.start();
+										Player2D.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+									}
+									if (i==2){
+										stave.addClef("treble").addTimeSignature("4/4");
+										var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
+										voice.addTickables(F_grade5);
+										Player5C.start();
+										Player4E.start();
+										Player3G.start();
+										Player2C.start();
+										var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+										voice.draw(context, stave);
+										document.getElementById("boton1").disabled=false;
+										document.getElementById("boton2").disabled=false;
+										document.getElementById("boton3").disabled=false;
+										document.getElementById("seguir").disabled=true;
+									}
+									i=i+1;
+									
+
+							 }, 1000);
+							}
+							
+
+
+
+						}
+
+
+			</script>
+		</div> 
+	<br>
+	<hr>
+</article>
+<footer id="grad2">
+	Universidad de Antioquia - Facultad de Ingenieria
+</footer>
+</div>
+</body>
+</html>

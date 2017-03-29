@@ -1,0 +1,116 @@
+div.container{
+		width: 100%;
+		border: 1px solid gray;
+	}
+	header{
+		padding: 1em;
+		color: white;
+		clear: left;
+		text-align: center;
+		font-family: lucida;
+		text-shadow: 2px 2px 5px black;
+	}
+	footer{
+		padding: 1em;
+		color: black;
+		clear: left;
+		text-align: center;
+		font-style: italic;
+	}
+	nav{
+		float:left;
+		max-width: 200px;
+		margin: 0;
+		padding: 2em;
+	}
+	nav ul{
+		padding: 0;
+		list-style-type: circle;
+
+	}
+	nav ul.a{
+		margin-left: 20px;
+	}
+	nav ul a{
+		text-decoration: none;
+	}
+	article{
+		margin-left: 170px;
+    	border-left: 1px solid gray;
+    	padding: 1em;
+    	overflow: hidden;
+	}
+a:link{	
+	text-align: center;
+	border-radius: 12px;
+	background: transparent;
+	color:blue;
+	padding: 5px 5px;
+	display: inline-block;
+	font-size: 16px;
+	}
+a:visited{
+	text-align: center;
+	border-radius: 12px;
+	background: transparent;
+	color:purple;
+	padding: 5px 5px;
+	display: inline-block;
+	font-size: 16px;
+}
+a:hover{
+	text-align: center;
+	border-radius: 12px;
+	background: transparent;
+	color:yellow;
+	padding: 5px 5px;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.button1{
+	border-radius: 12px;
+	text-align: center;
+	background-color: darkblue;
+    border: none;
+    color: white;
+    padding: 12px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#grad1{
+	background:
+	radial-gradient(black 15%, transparent 16%) 0 0,
+	radial-gradient(black 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color:#282828;
+	background-size:16px 16px;
+}
+
+#grad2{
+	background: green;
+    background: -webkit-linear-gradient(left top, darkgreen, white);
+    background: -o-linear-gradient(bottom right, darkgreen, white);
+    background: -moz-linear-gradient(bottom right, darkgreen, white);
+    background: linear-gradient(to bottom right, darkgreen, white); 
+}
+
+#grad3{
+	background:
+	radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 9%, hsla(0, 100%, 20%, 0) 9%) 0 0,
+	radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 8%, hsla(0, 100%, 20%, 0) 10%) 50px 50px,
+	radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 50px 0,
+	radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 0 50px,
+	radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 50px 0,
+	radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 100px 50px,
+	radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 0 0,
+	radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 50px 50px,
+	linear-gradient(45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0,
+	linear-gradient(-45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0;
+	background-color: #300; 
+	background-size: 100px 100px; 
+}

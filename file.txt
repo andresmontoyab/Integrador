@@ -1,0 +1,4 @@
+I-V6-I-I64-V-I-IV-ii6-V6-I-bIII-bVI-end-
+I-iii-ii-V-vi-IV-ii6-V-I-viid-I-end-
+V-IV-ii-iii-ii-V-vi-IV-ii6-V-I-viid-I-end-
+iii-I-iii-ii-iii-end-

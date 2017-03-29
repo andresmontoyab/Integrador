@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	@import "style/Style.css";
+</style>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="scripts/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="Tone.js-master/build/Tone.js"></script>
+
+
+<script type="text/javascript" src="../build/Tone.js"></script>
+<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+<script type="text/javascript" src="./scripts/draggabilly.js"></script>
+<script type="text/javascript" src="./scripts/StartAudioContext.js"></script>
+<!--<script type="text/javascript" src="./scripts/Interface.js"></script>-->
+<script type="text/javascript" src="scripts/other.js"></script>
+<script type="text/javascript" src="scripts/main4.js"></script>
+<script type="text/javascript" src="scripts/vexflow.js"></script>
+
+<!--<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>-->
+<script src="Acordes.js"></script>
+</head>
+<body id="bodyFondo">
+<div class="container" id="fondo">
+<header>
+	<h1> Aprende Música Jugando </h1>
+</header>
+
+<article>
+		<h1 id="Puntaje">Puntaje: </h1>
+		<h2 id="loser">Game Over</h2>
+		<label id="text"></label>
+		<h1 id="">
+		<label id="cuenta"></label>
+		<img src="style/mozart.gif" alt="Mozart" id="mozart" style="width:370px;height:250px;">
+		<img src="style/Chuck_Norris.gif" id="chuck" style="width:370px;height:250px;">
+		<img src="style/cat.gif" id="cat" style="width:370px;height:250px;">
+		<br>
+			<button onclick="playBase()" id='playBase'><span><span> Sonar Referencia </span></span></button>
+			<button onclick="play()" id='play'><span><span>Sonar Cadencia</span></span></button>
+			<button onclick="inicio()" id='iniciar'><span><span>Jugar</span></span></button>
+		</br>
+		<label id="respuesta" ></label>
+		<div id="pentagrama">
+			<script type="text/javascript"></script>
+		</div>
+		<input type="text" class="campo" id="number1" style="width: 150px;">
+		<input type="text" class="campo" id="number2" style="width: 150px;">
+		<input type="text" class="campo" id="number3" style="width: 150px;">
+		<input type="text" class="campo" id="number4" style="width: 150px;">
+		<br>
+		<br>
+		<button onclick="cuarto()" id='boton1'><span><span>IV</span></span></button>
+		<button onclick="quinto()" id='boton2'><span><span>V</span></span></button>
+		<button onclick="primero()" id='boton3'><span><span>I</span></span></button>
+		<button onclick="quinto_sexta()" id='boton4'><span><span>V6</span></span></button>
+		<button onclick="primero_inversion()" id='boton5'><span><span>I6-4</span></span></button>
+		
+		<!--<button onclick="quinto_quinto()" id='boton6'><span><span>V/V</span></span></button>
+		<button onclick="quinto_cuarto()" id='boton7'><span><span>V/IV</span></span></button>
+		<button onclick="cuarto_cuarto()" id='boton8'><span><span>IV/IV</span></span></button>
+		<button onclick="sexto()" id='boton9'><span><span>VI</span></span></button>
+		-->
+		<br>
+		<br>
+		<button onclick="listo()" id='listo'><span><span>Listo</span></span></button>
+		<button onclick="borrar()" id='borrar'><span><span>Borrar</span></span></button>
+		<br>
+		<button onclick="inicio()" id='volver'><span><span>Volver a Jugar</span></span></button>
+
+		<br></br>
+		<div id="ejemplo">
+			
+			<script type="text/javascript">
+			document.getElementById('iniciar').disabled=false;
+			var Notas = new Tone.MultiPlayer({
+				urls:{
+					"2AN" : "audio/2AN.mp3","2AS" : "audio/2AS.mp3","2BN" : "audio/2BN.mp3","2CS" : "audio/2CN.mp3","2CS" : "audio/2CS.mp3",
+					"2DN" : "audio/2DN.mp3","2DS" : "audio/2DS.mp3","2EN" : "audio/2EN.mp3","2FN" : "audio/2FN.mp3","2FS" : "audio/2FS.mp3",
+					"2GN" : "audio/2GN.mp3","2GS" : "audio/2GS.mp3",	
+					"3AN" : "audio/3AN.mp3","3AS" : "audio/3AS.mp3","3BN" : "audio/3BN.mp3","3CN" : "audio/3CN.mp3","3CS" : "audio/3CS.mp3",
+					"3DN" : "audio/3DN.mp3","3DS" : "audio/3DS.mp3","3EN" : "audio/3EN.mp3","3FN" : "audio/3FN.mp3","3FS" : "audio/3FS.mp3",
+					"3GN" : "audio/3GN.mp3","3GS" : "audio/3GS.mp3",
+					"4AN" : "audio/4AN.mp3","4AS" : "audio/4AS.mp3","4BN" : "audio/4BN.mp3","4CN" : "audio/4CN.mp3","4CS" : "audio/4CS.mp3",
+					"4DN" : "audio/4DN.mp3","4DS" : "audio/4DS.mp3","4EN" : "audio/4EN.mp3","4FN" : "audio/4FN.mp3","4FS" : "audio/4FS.mp3",
+					"4GN" : "audio/4GN.mp3","4GS" : "audio/4GS.mp3",
+					"5AN" : "audio/5AN.mp3","5AS" : "audio/5AS.mp3","5BN" : "audio/5BN.mp3","5CN" : "audio/5CN.mp3","5CS" : "audio/5CS.mp3",
+					"5DN" : "audio/5DN.mp3","5DS" : "audio/5DS.mp3","5EN" : "audio/5EN.mp3","5FN" : "audio/5FN.mp3","5FS" : "audio/5FS.mp3",
+					"5GN" : "audio/5GN.mp3","5GS" : "audio/5GS.mp3",	
+					"6AN" : "audio/6AN.mp3","6AS" : "audio/6AS.mp3","6BN" : "audio/6BN.mp3","6CN" : "audio/6CN.mp3","6CS" : "audio/6CS.mp3",
+					"6DN" : "audio/6DN.mp3","6DS" : "audio/6DS.mp3","6EN" : "audio/6EN.mp3","6FN" : "audio/6FN.mp3","6FS" : "audio/6FS.mp3",
+					"6GN" : "audio/6GN.mp3","6GS" : "audio/6GS.mp3",
+			},
+			volume: 3,
+			}).toMaster();
+			var Bajos = new Tone.MultiPlayer({
+				urls:{
+					"2AN" : "audio/2AN.mp3","2AS" : "audio/2AS.mp3","2BN" : "audio/2BN.mp3","2CS" : "audio/2CN.mp3","2CS" : "audio/2CS.mp3",
+					"2DN" : "audio/2DN.mp3","2DS" : "audio/2DS.mp3","2EN" : "audio/2EN.mp3","2FN" : "audio/2FN.mp3","2FS" : "audio/2FS.mp3",
+					"2GN" : "audio/2GN.mp3","2GS" : "audio/2GS.mp3",	
+					"3AN" : "audio/3AN.mp3","3AS" : "audio/3AS.mp3","3BN" : "audio/3BN.mp3","3CN" : "audio/3CN.mp3","3CS" : "audio/3CS.mp3",
+					"3DN" : "audio/3DN.mp3","3DS" : "audio/3DS.mp3","3EN" : "audio/3EN.mp3","3FN" : "audio/3FN.mp3","3FS" : "audio/3FS.mp3",
+					"3GN" : "audio/3GN.mp3","3GS" : "audio/3GS.mp3",
+					"4AN" : "audio/4AN.mp3","4AS" : "audio/4AS.mp3","4BN" : "audio/4BN.mp3","4CN" : "audio/4CN.mp3","4CS" : "audio/4CS.mp3",
+					"4DN" : "audio/4DN.mp3","4DS" : "audio/4DS.mp3","4EN" : "audio/4EN.mp3","4FN" : "audio/4FN.mp3","4FS" : "audio/4FS.mp3",
+					"4GN" : "audio/4GN.mp3","4GS" : "audio/4GS.mp3",
+					"5AN" : "audio/5AN.mp3","5AS" : "audio/5AS.mp3","5BN" : "audio/5BN.mp3","5CN" : "audio/5CN.mp3","5CS" : "audio/5CS.mp3",
+					"5DN" : "audio/5DN.mp3","5DS" : "audio/5DS.mp3","5EN" : "audio/5EN.mp3","5FN" : "audio/5FN.mp3","5FS" : "audio/5FS.mp3",
+					"5GN" : "audio/5GN.mp3","5GS" : "audio/5GS.mp3",	
+					"6AN" : "audio/6AN.mp3","6AS" : "audio/6AS.mp3","6BN" : "audio/6BN.mp3","6CN" : "audio/6CN.mp3","6CS" : "audio/6CS.mp3",
+					"6DN" : "audio/6DN.mp3","6DS" : "audio/6DS.mp3","6EN" : "audio/6EN.mp3","6FN" : "audio/6FN.mp3","6FS" : "audio/6FS.mp3",
+					"6GN" : "audio/6GN.mp3","6GS" : "audio/6GS.mp3",
+			},
+			volume: 7,
+			}).toMaster();
+
+
+
+
+			var tonalidades=['C','CS','D','Eb','E','F','Gb','G','Ab','A','Bb','B','C','D','E','F','G'];
+			var tonalidades1=['CN','CS','DN','DS','EN','FN','FS','GN','GS','AN','AS','BN','CN','CS','DN','DS','EN','FN','FS','GN','GS','AN','AS','BN','CN'];
+			var cadencias2=['pl','au','com','inve','i1','i2','i3','i4','i5','i6'];
+			var cadencias3=['plagal','autentica','completa','Invertida 6-4'];
+			var repeticiones;
+			var random_tonalidad=0;
+			var random_tonalidad1=0;
+			var random_cadencia=0;
+			var Acordes=[1,2,3];
+			var Acorde1=[1];
+			var Acorde2=[2];
+			var Acorde3=[3];
+			var Acorde4=[4];
+			var Acorde5=[5];
+			var inicio_game=true;
+			var repeticiones=0;
+
+			var indice_respuesta=0;
+			var respuesta=['x','x','x','x'];
+			var color=['red','red','red','red'];
+			var respuesa_button=['number1','number2','number3','number4'];
+			var respuesta_cadencias=['+IV+I','+V+I','+IV+V+I','+IV+I6-4+V+I','+V+I','+V6+I','+V/V+V','+I+V','+V/IV+IV','+IV/IV+IV','+V+VI'];
+			puntaje=100;
+
+			document.getElementById('number1').value="";
+			document.getElementById('number2').value="";
+			document.getElementById('number3').value="";
+			document.getElementById('number4').value="";
+			document.getElementById('boton1').style.visibility="hidden";
+			document.getElementById('boton2').style.visibility="hidden";
+			document.getElementById('boton3').style.visibility="hidden";
+			document.getElementById('boton4').style.visibility="hidden";
+			document.getElementById('boton5').style.visibility="hidden";
+			document.getElementById('number1').style.visibility="hidden";
+			document.getElementById('number2').style.visibility="hidden";
+			document.getElementById('number3').style.visibility="hidden";
+			document.getElementById('number4').style.visibility="hidden";
+
+			
+			/*document.getElementById('boton6').style.visibility="hidden";
+			document.getElementById('boton7').style.visibility="hidden";
+			document.getElementById('boton8').style.visibility="hidden";
+			document.getElementById('boton9').style.visibility="hidden";
+			*/
+			document.getElementById('listo').style.visibility="hidden";
+			document.getElementById('volver').style.visibility="hidden";
+			document.getElementById('borrar').style.visibility="hidden";
+			document.getElementById('play').style.visibility="hidden";
+			document.getElementById('playBase').style.visibility="hidden";
+			document.getElementById('mozart').style.visibility="hidden";
+			document.getElementById('chuck').style.visibility="hidden";
+			document.getElementById('cat').style.visibility="hidden";
+			document.getElementById('loser').style.visibility="hidden";
+			document.getElementById('iniciar').style.visibility="visible";
+			document.getElementById('number1').disabled=true;
+			document.getElementById('number2').disabled=true;
+			document.getElementById('number3').disabled=true;
+			document.getElementById('number4').disabled=true;
+			document.getElementById('text').innerHTML=puntaje;
+
+					function inicio(){
+						repeticiones=0;
+						if(puntaje==0){
+							puntaje=puntaje+100;
+							document.getElementById('text').innerHTML=puntaje;
+						}
+
+						document.getElementById('number1').value="";
+						document.getElementById('number2').value="";
+						document.getElementById('number3').value="";
+						document.getElementById('number4').value="";
+						indice_respuesta=0;
+						document.getElementById('iniciar').style.visibility="hidden";
+						document.getElementById('mozart').style.visibility="hidden";
+						document.getElementById('loser').style.visibility="hidden";
+						document.getElementById('number1').style.visibility="visible";
+						document.getElementById('number2').style.visibility="visible";
+						document.getElementById('number3').style.visibility="visible";
+						document.getElementById('number4').style.visibility="visible";
+						document.getElementById('cuenta').style.visibility="visible";
+						document.getElementById('boton2').disabled=false;
+						document.getElementById('boton3').disabled=false;
+						document.getElementById('boton1').disabled=false;
+						document.getElementById('boton5').disabled=false;
+						document.getElementById('boton4').disabled=false;
+						
+						/*document.getElementById('boton6').disabled=false;
+						document.getElementById('boton7').disabled=false;
+						document.getElementById('boton8').disabled=false;
+						document.getElementById('boton9').disabled=false;
+						*/
+						document.getElementById('play').disabled=false;
+						document.getElementById('playBase').disabled=false;
+
+						random_tonalidad=(Math.floor((Math.random() * 7) + 0));  //Se generan los randoms para contruir la cadencia
+						random_cadencia=(Math.floor((Math.random() * 6) + 0));	//Se genera los randoms para contruir la cadencia
+						random_tonalidad1=(Math.floor((Math.random() * 11) + 0));
+						var random_button=(Math.floor((Math.random() * 3) + 0));
+						console.log(random_button+"-ñ-ñ-ñ-ñ-"+random_tonalidad1+" "+random_cadencia);
+						
+
+						console.log(tonalidades1[random_tonalidad1],cadencias2[random_cadencia]+"!!!!!!!!!!!!");
+						Acordes=formarCadencia(tonalidades1[random_tonalidad1],cadencias2[random_cadencia]);
+						if(cadencias2[random_cadencia]=='completa'|| cadencias2[random_cadencia] == 'completaFull'){
+							Acorde3=Acordes[2];
+							console.log(Acorde3+"Acorde3");
+						}
+
+						Dibujar(random_cadencia,random_tonalidad1,1,color[0],color[1],color[2],color[3]);
+
+						document.getElementById('boton1').style.visibility="visible";
+						document.getElementById('boton2').style.visibility="visible";
+						document.getElementById('boton3').style.visibility="visible";
+						document.getElementById('boton4').style.visibility="visible";
+						document.getElementById('boton5').style.visibility="visible";
+						document.getElementById('chuck').style.visibility="hidden";
+						document.getElementById('cat').style.visibility="hidden";
+						/*document.getElementById('boton6').style.visibility="visible";
+						document.getElementById('boton7').style.visibility="visible";
+						document.getElementById('boton8').style.visibility="visible";
+						document.getElementById('boton9').style.visibility="visible";
+						*/
+						document.getElementById('listo').style.visibility="visible";
+						document.getElementById('borrar').style.visibility="visible";
+						document.getElementById('play').style.visibility="visible";
+						document.getElementById('playBase').style.visibility="visible";
+
+						Acorde1=Acordes[0];
+						Acorde2=Acordes[1];
+						Acorde3=Acordes[2];
+						Acorde4=Acordes[3];
+						Acorde5=Acordes[4];
+						
+						console.log(Acorde1+"Acorde1");
+						console.log(Acorde2+"Acorde2");
+						console.log(Acorde3+"Acorde3");
+						console.log(Acorde4+"Acorde4");
+						console.log(Acorde5+"Acorde5");
+					}
+
+
+					function playBase(){
+						console.log("base"+Acorde1[0]);
+						Bajos.start(Acorde1[0]);
+						Notas.start(Acorde1[1]);
+						Notas.start(Acorde1[2]);
+						Notas.start(Acorde1[3]);	
+					
+						//source.volume.value=5;
+					}
+					function play(){
+						repeticiones++;
+						if(repeticiones<=3){
+							var i=0;
+							Bajos.start(Acorde2[0]);
+							Notas.start(Acorde2[1]);
+							Notas.start(Acorde2[2]);
+							Notas.start(Acorde2[3]);
+							console.log("play2");
+								setInterval(function(){ 
+									if (i==0){
+										Bajos.start(Acorde3[0]);
+										Notas.start(Acorde3[1]);
+										Notas.start(Acorde3[2]);
+										Notas.start(Acorde3[3]);
+										console.log("play3");
+									}
+									if((cadencias2[random_cadencia]=='com' || cadencias2[random_cadencia]=='inve')){
+										if(i==1){
+											Bajos.start(Acorde4[0]);
+											Notas.start(Acorde4[1]);
+											Notas.start(Acorde4[2]);
+											Notas.start(Acorde4[3]);
+											console.log("play4");
+										}
+									}
+									if(cadencias2[random_cadencia]=='inve'){
+										if(i==2){
+											Bajos.start(Acorde5[0]);
+											Notas.start(Acorde5[1]);
+											Notas.start(Acorde5[2]);
+											Notas.start(Acorde5[3]);
+											console.log("play5");
+										}
+									}
+									
+									if(repeticiones==3){
+										document.getElementById('play').disabled=true;
+										document.getElementById('play').style.visibility="hidden";
+										console.log("Repeticiones off");
+										
+									}
+									i=i+1;
+
+							 }, 1000);
+						}
+						document.getElementById('cuenta').innerHTML="Número de repeticiones: "+ (3-repeticiones);
+					}
+
+
+
+					function cuarto(){
+						respuesta[indice_respuesta]='IV';
+						document.getElementById(respuesa_button[indice_respuesta]).value="IV";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					function quinto(){
+						respuesta[indice_respuesta]='V';
+						document.getElementById(respuesa_button[indice_respuesta]).value="V";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+					function primero(){
+						respuesta[indice_respuesta]='I';
+						document.getElementById(respuesa_button[indice_respuesta]).value="I";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					function primero_inversion(){
+						respuesta[indice_respuesta]='I6-4';
+						document.getElementById(respuesa_button[indice_respuesta]).value="I6-4";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+
+					function quinto_sexta(){
+						respuesta[indice_respuesta]='V6';
+						document.getElementById(respuesa_button[indice_respuesta]).value="V6";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					/*
+					function quinto_quinto(){
+						respuesta[indice_respuesta]='V/V';
+						document.getElementById(respuesa_button[indice_respuesta]).value="V/V";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					function quinto_cuarto(){
+						respuesta[indice_respuesta]='V/IV';
+						document.getElementById(respuesa_button[indice_respuesta]).value="V/IV";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					function cuarto_cuarto(){
+						respuesta[indice_respuesta]='IV/IV';
+						document.getElementById(respuesa_button[indice_respuesta]).value="IV/IV";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+
+					function sexto(){
+						respuesta[indice_respuesta]='VI';
+						document.getElementById(respuesa_button[indice_respuesta]).value="VI";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						indice_respuesta=indice_respuesta+1;
+					}
+					*/
+					function borrar(){
+						if(indice_respuesta!=0 || indice_respuesta==4){
+						indice_respuesta=indice_respuesta-1;
+						respuesta[indice_respuesta]='x';
+						document.getElementById(respuesa_button[indice_respuesta]).value="";
+						console.log("'"+respuesa_button[indice_respuesta]+"'");
+						}
+					}
+
+					
+
+					function listo(){
+						repeticiones=3;
+						var aux=0;
+						var new_respuesta='';
+						for(aux=0;aux<respuesta.length;aux++){
+							if(respuesta[aux] != 'x'){
+								new_respuesta=new_respuesta+'+'+respuesta[aux];
+								respuesta[aux]='x';
+							}
+
+						}
+
+						var vector_obtenido=new_respuesta.split("+");
+						var vector_base=respuesta_cadencias[random_cadencia].split("+");
+					
+
+						var n_base=vector_base.length;
+						var n_obtenido=vector_obtenido.length;
+
+				
+						if(n_base>=n_obtenido){
+							var max=n_obtenido;
+						}
+						if(n_obtenido>n_base){
+							var max=n_base;
+						}
+						if(n_base == n_obtenido){
+							var max=n_base;
+						}
+
+						for(var n=1; n<max;n++){
+							if(vector_obtenido[n] == vector_base[n]){
+								color[n-1]='green';
+							}else{
+								color[n-1]='red';
+							}
+						}
+						console.log(color);
+						console.log(vector_obtenido);
+						console.log(vector_base);
+						console.log(max);
+
+
+
+						console.log("here is a responde "+new_respuesta);
+						console.log("here is the other "+respuesta_cadencias[random_cadencia]);
+						if(respuesta_cadencias[random_cadencia] == new_respuesta){
+							puntaje=puntaje+20;
+							document.getElementById('text').innerHTML=puntaje;
+							console.log("ESTA BUENA");
+							Dibujar(random_cadencia,random_tonalidad1,2,color[0],color[1],color[2],color[3]);
+							document.getElementById('chuck').style.visibility="visible";
+							document.getElementById('cat').style.visibility="hidden";
+						}
+						else{
+							console.log("la vieja confiable");
+							puntaje=puntaje-20;
+							document.getElementById('text').innerHTML=puntaje;
+							Dibujar(random_cadencia,random_tonalidad1,2,color[0],color[1],color[2],color[3]);
+							document.getElementById('cat').style.visibility="visible";
+						}
+						if(puntaje==0){
+							document.getElementById('cat').style.visibility="hidden";
+							document.getElementById('loser').style.visibility="visible";
+							document.getElementById('mozart').style.visibility="visible";
+							document.getElementById('iniciar').innerHTML="Volver a Jugar";
+						}
+						document.getElementById('iniciar').disabled=false;
+						if(puntaje!=0){
+						document.getElementById('iniciar').innerHTML="Continuar";
+						}
+						document.getElementById('iniciar').style.visibility="visible";
+						document.getElementById('boton1').style.visibility="hidden";
+						document.getElementById('boton2').style.visibility="hidden";
+						document.getElementById('boton3').style.visibility="hidden";
+						document.getElementById('boton5').style.visibility="hidden";
+						document.getElementById('boton4').style.visibility="hidden";
+						document.getElementById('cuenta').style.visibility="hidden";
+						/*document.getElementById('boton6').style.visibility="hidden";
+						document.getElementById('boton7').style.visibility="hidden";
+						document.getElementById('boton8').style.visibility="hidden";
+						document.getElementById('boton9').style.visibility="hidden";*/
+						document.getElementById('playBase').style.visibility="hidden";
+						document.getElementById('play').style.visibility="hidden";
+						document.getElementById('borrar').style.visibility="hidden";
+						document.getElementById('listo').style.visibility="hidden";
+						document.getElementById('cuenta').innerHTML="Número de repeticiones: "+ (repeticiones);
+						for(var n=0;n<4;n++){
+							color[n]='red';
+						}
+					}
+
+
+					
+
+					document.getElementById("boton1").disabled=false;
+					document.getElementById("boton2").disabled=false;
+					document.getElementById("boton3").disabled=false;
+					document.getElementById("boton5").disabled=false;
+
+					VF = Vex.Flow;
+					var div = document.getElementById("pentagrama")
+			 		
+
+					var rendererTreble = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+					rendererTreble.resize(1000, 130);
+					var contextTreble = rendererTreble.getContext();
+					contextTreble.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+					var rendererBass = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+					rendererBass.resize(1000, 200);
+					var contextBass = rendererBass.getContext();
+					contextBass.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+					var staveTreble = new VF.Stave(10, 0, 250);
+
+  					staveTreble.setEndBarType(Vex.Flow.Barline.type.REPEAT_END);	
+					staveTreble.addKeySignature("C");	
+					staveTreble.addClef("treble");				
+					staveTreble.setContext(contextTreble).draw();
+
+					var staveBar2 = new Vex.Flow.Stave(staveTreble.width + staveTreble.x, staveTreble.y, 100);
+  					staveBar2.setContext(contextTreble).draw();
+
+					var staveBass = new VF.Stave(10, 0, 250);
+					 
+  					staveBass.setEndBarType(Vex.Flow.Barline.type.REPEAT_END);
+					staveBass.addKeySignature("C");	
+					staveBass.addClef("bass");			
+					staveBass.setContext(contextBass).draw();
+
+					var staveBar2 = new Vex.Flow.Stave(staveBass.width + staveBass.x, staveBass.y, 100);
+  					staveBar2.setContext(contextBass).draw();
+
+  					if(inicio_game){
+					var notesTreble = [];
+  					var notesBass = [];
+  					inicio_game=false;
+  									}
+						
+					var voiceTreble = new Vex.Flow.Voice({num_beats:0, beat_value: 4, resolution:Vex.Flow.RESOLUTION});
+					var voiceBass = new Vex.Flow.Voice({num_beats:0, beat_value: 4, resolution:Vex.Flow.RESOLUTION});
+
+					voiceTreble.addTickables(notesTreble).setStave(staveTreble);
+					voiceBass.addTickables(notesBass).setStave(staveBass);
+
+
+
+					var formatter = new Vex.Flow.Formatter();
+
+					// Make sure the staves have the same starting point for notes
+					var startX = Math.max(staveTreble.getNoteStartX(), staveBass.getNoteStartX());
+					staveTreble.setNoteStartX(startX);
+					staveBass.setNoteStartX(startX);
+
+					// the treble and bass are joined independently but formatted together
+					formatter.joinVoices([voiceTreble]);
+					formatter.joinVoices([voiceBass]);
+					console.log(staveBass.getNoteStartX());
+					formatter.format([voiceTreble, voiceBass], 100 - (startX - 120));
+
+					voiceTreble.setContext(contextTreble).draw();
+					voiceBass.setContext(contextBass).draw();
+			</script>
+		</div>
+</article>
+<footer>
+	Universidad de Antioquia - Facultad de Ingenieria
+</footer>
+</div>
+</body>
+</html>
