@@ -37,15 +37,36 @@
             <div id="tonal">
                 <label id="scores" style="color: white"></label>
                 <label id="tonalidad" style="color: white"></label>
+                <select id="combo_tonalidades">
+                  <option value="CN">C</option>
+                  <option value="DN">D</option>
+                  <option value="EN">E</option>
+                  <option value="FN">F</option>
+                  <option value="GN">G</option>
+                  <option value="AN">A</option>
+                  <option value="BN">B</option>
+                  <option value="CS">C#</option>
+                  <option value="FS">F#</option>
+                  <option value="DS">Eb</option>
+                  <option value="AS">Bb</option>
+                  <option value="random">Aleatorio</option>
+                </select>
             </div>
-             <div id="correct_answer"></div>
-              </div>
-            <div id="button_sound">
-                <button onclick="replay()" id='replay'><span>Repetir</span></button>
-            </div>
+             
+          
+
+
             <div id="button_sound">
                 <button onclick="next_Prog()" id='next_prog'><span>Empezar</span></button>
             </div>
+
+
+            <div id="answerss"></div>
+            </div>
+
+            <div id="correct_answer"></div>
+            </div>
+
              <div id="button_sound">
                 <button onclick="next()" id='next'><span>Siguiente --></span></button>
             </div>
@@ -59,8 +80,7 @@
             <div id="numero_acordes">
                 <label id="number_chords" style="color: white"></label>
             </div>
-    		<div id="answerss"></div>
-		      </div>
+    		  
              
     </center>
 
@@ -74,6 +94,7 @@
         var input_textBox_user=[];
         var input_textBox_answer=[];
         var i;
+        var tone_choice;
         var timer_progresion;
         var number_replay = 5;
         var opcion_avaliable = 5;
@@ -184,7 +205,7 @@
 </body>
 <footer>
 	<center>
-        <label id="UdeA" style="color: white">Universidad de Antioquia - Facultad de Ingenieria</label>
+        <label id="UdeA" style="color: white">Proyecto Integrador-Departamento de Ingeniera de Sistemas-Universidad de Antioquia</label>
     </center>
 </footer>
 </html>

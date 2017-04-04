@@ -47,11 +47,16 @@ function next_Prog(){
 
     var value_button = document.getElementById("next_prog").textContent;
 
+
+
+
+
     if( value_button == 'Empezar'){
 
             document.getElementById("next_prog").innerHTML = "Play"
             document.getElementById("check").style.visibility="visible";
             document.getElementById("repeticiones").style.visibility="visible";
+            document.getElementById("combo_tonalidades").style.visibility="visible";
 
             random_progresion= (Math.floor((Math.random() * (progresiones.length)) + 0));;
             progresiones_por_grado= progresiones[random_progresion].split("-");
@@ -62,8 +67,17 @@ function next_Prog(){
 
 
     }else if(value_button == "Play"){
-                    
-                    replay();
+            var tones_combo = document.getElementById("combo_tonalidades");
+            tone_choice = tones_combo.options[tones_combo.selectedIndex].value;
+            
+            if(tone_choice == "random"){
+                random_comboBox= (Math.floor((Math.random() * (12)) + 0));;
+                tones_combo.value = tones_combo.options[random_comboBox].value;
+                tone_choice = tones_combo.options[tones_combo.selectedIndex].value;
+
+            }
+            document.getElementById('combo_tonalidades').disabled=true;
+            replay();
         }
             else {
             document.getElementById('replay').disabled=false;
@@ -99,8 +113,9 @@ function replay(){
     }
     timer_progresion = setInterval(function(){
         if(i<progresiones_por_grado.length){
-            int = interpretar(progresiones_por_grado[i],"CN");
+            int = interpretar(progresiones_por_grado[i],tone_choice);
             console.log("Suena: "+int);
+            console.log(tone_choice);
             Notas.start(int[0]);
             Notas.start(int[1]);
             Notas.start(int[2]);
@@ -115,14 +130,18 @@ function vista_inicio(){
      //Solo Mostrar el Bottun Empezar al inicio del juego.
         
         document.getElementById("check").style.visibility="hidden";
-        document.getElementById("replay").style.visibility="hidden";
+        //document.getElementById("replay").style.visibility="hidden";
         document.getElementById("repeticiones").style.visibility="hidden";
         document.getElementById("r").style.visibility="hidden";
         document.getElementById("next").style.visibility="hidden";
+        document.getElementById("combo_tonalidades").style.visibility="hidden";
+        document.getElementById('combo_tonalidades').disabled=false;
 }
 
 
 function checkAnswer(){
+
+        stop_audio();
         estado="esperando";
         var cont=0;
         var wrong_cont=0;
@@ -147,24 +166,29 @@ function checkAnswer(){
 
         answer_user = (size - wrong_answer.length)+"/"+size;
         input_textBox_answer=create_answer_correct(progresiones_por_grado.length);
-
-
+        console.log("Entrando");
+        disable_texts(progresiones_por_grado.length);
+        console.log("Saliendo");
         //Configurar interfaz de "Corregir"
         document.getElementById("repeticiones").style.visibility="hidden";
+         document.getElementById("scores").style.visibility="visible";
         document.getElementById('scores').innerHTML=answer_user;
         document.getElementById("check").style.visibility="hidden";
         document.getElementById("next").style.visibility="visible";
     }
 
 function next(){
-
+    stop_audio();
+    number_replay = 5;
+    document.getElementById("repeticiones").innerHTML="Repeticiones Disponibles: "+number_replay;
     document.getElementById("next").style.visibility="hidden";
     document.getElementById("next_prog").innerHTML = "Play"
     document.getElementById("check").style.visibility="visible";
     document.getElementById("repeticiones").style.visibility="visible";
     document.getElementById("scores").style.visibility="hidden";
+    document.getElementById('combo_tonalidades').disabled=false;
     document.getElementById("next_prog").style.visibility="visible";
-    console.log(input_textBox_answer[1]);
+    console.log(input_textBox_answer[1].value);
    // var rem = document.getElementById(input_textBox[0].id);
     //answer_user.removeChild(rem);
 
@@ -180,7 +204,7 @@ function next(){
     progresiones_por_grado[0] = progresiones_por_grado[0].trim();
     input_textBox_user=create_text(progresiones_por_grado.length);
     estado = "jugando";
-    
+    enable_texts();    
     
 
 }

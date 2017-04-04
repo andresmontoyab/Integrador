@@ -27,3 +27,22 @@ function create_answer_correct(number_chords){
 	}
 	return input;
 }
+
+function disable_texts(number_chords){
+
+	console.log("entro a disable")
+	for (var i=0; i < number_chords; i++){
+		input_textBox_user[i].disabled=true;
+		input_textBox_answer[i].disabled=true;
+	}
+
+}
+
+function enable_texts(number_chords){
+
+
+	for (var i=0; i < number_chords; i++){
+		input_textBox_user[i].disabled=false;
+	}
+
+}
